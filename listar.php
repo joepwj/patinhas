@@ -22,7 +22,7 @@
     <div class="container">
         <h2>Animais Disponíveis para Adoção</h2>
 
-        <div class="grid">
+        <div>
            <table>
   
         <tr>
@@ -35,8 +35,24 @@
             
         </tr>
     
+<?php
 
-        <!-- AQUI ESCREVER O CÓDIGO EM PHP QUE BUSCA OS ANIMAIS NO BANCO E DADOS E EXIBE NAS LINHAS E COLUNAS DA TABELA -->
+include 'db.php';
+
+$sql = "SELECT * FROM animais";
+$resultado = $conexao->query($sql);
+
+while ($animal = $resultado->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td>" . $animal['nome'] . "</td>";
+    echo "<td>" . $animal['especie'] . "</td>";
+    echo "<td>" . $animal['idade'] . "</td>";
+    echo "<td>" . $animal['porte'] . "</td>";
+    echo "<td>" . $animal['descricao'] . "</td>";
+    echo "</tr>";
+ }
+
+?>
 
 </table>
 

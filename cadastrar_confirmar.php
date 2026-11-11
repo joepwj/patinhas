@@ -23,8 +23,27 @@
         <div class="card">
             <h2>Formulário de Cadastro</h2>
             
-             <!-- AQUI ESCREVER O CÓDIGO EM PHP QUE CAPTURA OS DADOS DOS ANIMAIS E INSERE NO BANCO DE DADOS -->
-           
+<?php
+
+include 'db.php';
+
+$nome      = $_POST['nome'];
+$especie   = $_POST['especie'];
+$idade     = $_POST['idade'];
+$porte     = $_POST['porte'];
+$descricao = $_POST['descricao'];
+
+$sql = "INSERT INTO animais (nome, especie, idade, porte, descricao)
+        VALUES ('$nome', '$especie', $idade, '$porte', '$descricao')";
+
+if ($conexao->query($sql) === TRUE) {
+    echo '<div class="alert sucesso">Animal cadastrado com sucesso!</div>';
+} else {
+    echo '<div class="alert erro">Erro: ' . $conexao->error . '</div>';
+}
+
+?>
+
         </div>
     </div>
 
